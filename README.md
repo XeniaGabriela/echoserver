@@ -4,7 +4,7 @@ Installation
 ------------
 
 1. clone git repository 
-2. install python 2.X and add its path to system path variables
+2. install python 3.X and add its path to system path variables
 3. cd udp/config and open config.py
 4. set mandatory configuration parameters
 
@@ -20,13 +20,21 @@ Installation
 		------------------------------------------ general ---------------------------------------
 		
 		ECHO_PORT = integer (range 49152–65535)                   --> override option in cmd/shell      
-	    BUFSIZE = integer (max number of bytes to receive per package)
+	        BUFSIZE = integer (max number of bytes to receive per package)
 	    
 	    ------------------------------- only relevant for client ---------------------------------
 
 		MAX_PACKAGE_NUM = integer (number of packages to send)    --> override option in cmd/shell 
 		ECHO_TIMEOUT = float (timeout in seconds to wait for echo from server)
 		INTER_PRINT = integer (print every 'INTER_PRINT'-th package (set to None for no intermediate printing)
+7. add client ip to allowed clients
+
+		# allowed clients
+		allowed_clients = [
+			'localhost',
+			'127.0.0.1',
+			...
+		]
 
 
 Run Server
