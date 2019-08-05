@@ -19,6 +19,15 @@ messageData = ""
 ##################################### UDP CONNECTION TEST #####################################
 ###############################################################################################
 
+#################################### PYTHON VERSION VARIANTS ##################################
+
+def v_bytes(string):
+    return bytes(string, "utf-8") if sys.version_info[0] == 3 else string
+
+def v_input(string):
+    return input(string) if sys.version_info[0] == 3 else raw_input(string)
+
+######################################## PARSE USER INPUT ####################################
 
 def main():
     if len(sys.argv) < 2:
@@ -36,14 +45,19 @@ def main():
         usage()
 
 
-###################################### PARSING PARAMETERS ######################################
+##################################### USAGE EXPLANATION #####################################
 
 def usage():
     sys.stdout = sys.stderr
-    print 'Usage: udpecho -s [-p port]                           (server)'
-    print 'or:    udpecho -c host [-p port] [-a packet_amount]  (client)'
-    print 'the default echo port is 50007'
-    print 'the default packet size is 1024, the default packet amount is 10^6'
+    print ('\nThis is a UDP-connection test server and client system.')
+    print ('It counts lost packages sent between the client and the server.\n')
+    print ('Usage:')
+    print ('------')
+    print ('To start the server type: python udpEcho.py -s [-p port]')
+    print ('To start the client type: python udpEcho.py -c <host_ip> [-p port] [-a packet_amount]')
+    print ('The parameters in brackets [] are optional \n')
+    print ('the default echoserver port is 49975, the default streamport is 49976.')
+    print ('the default packet size is 1024, the default packet amount is 10^6')
     sys.exit(2)
 
 def portOption():
@@ -56,7 +70,7 @@ def packetAmount():
     if "-a" in sys.argv and len(sys.argv) > sys.argv.index("-a") + 1:
         return eval(sys.argv[sys.argv.index("-a") + 1])
     else:
-        return config.MAX_packet_NUM 
+        return config.MAX_PACKAGE_NUM 
 
 
 ############################################ SERVER ############################################
@@ -103,7 +117,7 @@ def udpServer():
         elif packet['serial'] > 0 and udpClient != None:
             udpClient['received'] += 1
             udpClient['last_serial'] = packet['serial']
-            dataHash = hashlib.md5(json.dumps(packet['data'])).hexdigest()
+            dataHash = hashlib.md5(json.dumps(packet['data']).encode('utf-8')).hexdigest()
             sock.sendto(data, addr)
             # missing packets
             if udpClient['last_serial'] + 1 < packet['serial']:
@@ -115,7 +129,7 @@ def udpServer():
             if packet['serial'] == udpClient['expected']:
                 message = "expected: %d, received: %d, broken: %d " % (udpClient['expected'], udpClient['received'], udpClient['broken_packets'])
                 logEvent(message, "", addr, "")
-                confirm = messageJSON(udpClient['expected'] + 1, udpClient['received'], message)
+                confirm = messageJSON(udpClient['expected'] + 1, udpClient['received'], message).encode()
                 sock.sendto(confirm, addr)
                 logEvent("send confirmation", addr, "", "")
                 del udpClients[udpClients.index(udpClient)]
@@ -205,8 +219,8 @@ def packetEcho(serial, max_packet_num, sock, addr):
             if packet['serial'] != None:
                 # print every 'INTER_PRINT'-th packet (None for no intermediate printing)
                 if config.INTER_PRINT != None and packet['serial'] % config.INTER_PRINT == 0:
-                    print "received packet %d" % (packet['serial'])
-                dataHash = hashlib.md5(json.dumps(packet['data'])).hexdigest()
+                    print ("received packet %d" % (packet['serial']))
+                dataHash = hashlib.md5(json.dumps(packet['data']).encode('utf-8')).hexdigest()
                 # no initial message or server sided broken packet
                 if packet['serial'] == -1:
                     logEvent("SERVER: " + packet['data'], "", "", "")
@@ -258,7 +272,7 @@ def messageJSON(serial, last_packet, data):
         'packets': last_packet,
         'data': data,
         'size': 0,
-        'datahash': hashlib.md5(json.dumps(data)).hexdigest()
+        'datahash': hashlib.md5(json.dumps(data).encode('utf-8')).hexdigest()
     }
     messageSize = len(str(message))
     message['size'] = messageSize + len(str(messageSize)) - 1
@@ -279,7 +293,7 @@ def logEvent(event, sent_to, received_from, error):
     now = str(date.now())
     receiver = "to " + str(sent_to) if sent_to != "" else ""
     sender = "from " + str(received_from) if received_from != "" else ""
-    print now, event, sender, receiver
+    print (now, event, sender, receiver)
     logger["events"].info("%s;%s;%s;%s;%s;%s;%s;" % (
         now, 
         socketModule.gethostname(), 
