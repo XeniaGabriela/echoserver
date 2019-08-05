@@ -79,3 +79,13 @@
 2019-08-05 09:29:30.484928;silverxen-ZenBook;172.18.149.53;expecting 10000 packets;;('172.18.149.53', 10002);;
 2019-08-05 09:29:32.586030;silverxen-ZenBook;172.18.149.53;expected: 10000, received: 10000, broken: 0 ;;('172.18.149.53', 10002);;
 2019-08-05 09:29:32.586266;silverxen-ZenBook;172.18.149.53;send confirmation;('172.18.149.53', 10002);;;
+2019-08-05 09:34:56.713118;silverxen-ZenBook;172.18.149.53;exit script;;;;
+2019-08-05 10:02:32.955490;silverxen-ZenBook;172.18.149.53;server ready;;;;
+2019-08-05 10:02:50.095863;silverxen-ZenBook;172.18.149.53;transfer request;;('172.18.149.53', 10011);;
+2019-08-05 10:02:51.097769;silverxen-ZenBook;172.18.149.53;expecting 1000000 packets;;('172.18.149.53', 10011);;
+2019-08-05 10:03:11.961458;silverxen-ZenBook;172.18.149.53;exit script;;;;
+2019-08-05 10:03:18.829730;silverxen-ZenBook;172.18.149.53;server ready;;;;
+2019-08-05 10:03:39.242380;silverxen-ZenBook;172.18.149.53;transfer request;;('172.18.149.53', 10018);;
+2019-08-05 10:03:40.244340;silverxen-ZenBook;172.18.149.53;expecting 10000 packets;;('172.18.149.53', 10018);;
+2019-08-05 10:03:44.323120;silverxen-ZenBook;172.18.149.53;expected: 10000, received: 10000, broken: 0 ;;('172.18.149.53', 10018);;
+2019-08-05 10:03:44.323494;silverxen-ZenBook;172.18.149.53;send confirmation;('172.18.149.53', 10018);;;

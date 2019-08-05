@@ -187,3 +187,12 @@
 2019-08-05 09:29:32.586284;silverxen-ZenBook;172.18.149.53;SERVER: expected: 10000, received: 10000, broken: 0 ;;;;
 2019-08-05 09:29:32.586640;silverxen-ZenBook;172.18.149.53;CLIENT: expected 10000, received: 10000, lost: 0, broken: 0, success rate: 100.0%, failure rate: 0.0%, transfer duration: 0:00:02.102007;;;;
 2019-08-05 09:29:32.586836;silverxen-ZenBook;172.18.149.53;exit script;;;;
+2019-08-05 10:02:50.095529;silverxen-ZenBook;172.18.149.53;test connection;('127.0.0.1', 49976);;;
+2019-08-05 10:02:51.096459;silverxen-ZenBook;172.18.149.53;sending opener;('127.0.0.1', 49975);;;
+2019-08-05 10:02:51.096985;silverxen-ZenBook;172.18.149.53;expecting 1000000 packets;;('127.0.0.1', 49975);;
+2019-08-05 10:03:39.242133;silverxen-ZenBook;172.18.149.53;test connection;('127.0.0.1', 49976);;;
+2019-08-05 10:03:40.243086;silverxen-ZenBook;172.18.149.53;sending opener;('127.0.0.1', 49975);;;
+2019-08-05 10:03:40.243590;silverxen-ZenBook;172.18.149.53;expecting 10000 packets;;('127.0.0.1', 49975);;
+2019-08-05 10:03:44.323557;silverxen-ZenBook;172.18.149.53;SERVER: expected: 10000, received: 10000, broken: 0 ;;;;
+2019-08-05 10:03:44.324110;silverxen-ZenBook;172.18.149.53;CLIENT: expected 10000, received: 10000, lost: 0, broken: 0, success rate: 100.0%, failure rate: 0.0%, transfer duration: 0:00:04.080093;;;;
+2019-08-05 10:03:44.324372;silverxen-ZenBook;172.18.149.53;exit script;;;;

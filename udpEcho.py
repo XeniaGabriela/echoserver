@@ -117,7 +117,7 @@ def udpServer():
         elif packet['serial'] > 0 and udpClient != None:
             udpClient['received'] += 1
             udpClient['last_serial'] = packet['serial']
-            dataHash = hashlib.md5(json.dumps(packet['data']).encode('utf-8')).hexdigest()
+            dataHash = hashlib.sha256(json.dumps(packet['data']).encode('utf-8')).hexdigest()
             sock.sendto(data, addr)
             # missing packets
             if udpClient['last_serial'] + 1 < packet['serial']:
@@ -220,7 +220,7 @@ def packetEcho(serial, max_packet_num, sock, addr):
                 # print every 'INTER_PRINT'-th packet (None for no intermediate printing)
                 if config.INTER_PRINT != None and packet['serial'] % config.INTER_PRINT == 0:
                     print ("received packet %d" % (packet['serial']))
-                dataHash = hashlib.md5(json.dumps(packet['data']).encode('utf-8')).hexdigest()
+                dataHash = hashlib.sha256(json.dumps(packet['data']).encode('utf-8')).hexdigest()
                 # no initial message or server sided broken packet
                 if packet['serial'] == -1:
                     logEvent("SERVER: " + packet['data'], "", "", "")
@@ -272,7 +272,7 @@ def messageJSON(serial, last_packet, data):
         'packets': last_packet,
         'data': data,
         'size': 0,
-        'datahash': hashlib.md5(json.dumps(data).encode('utf-8')).hexdigest()
+        'datahash': hashlib.sha256(json.dumps(data).encode('utf-8')).hexdigest()
     }
     messageSize = len(str(message))
     message['size'] = messageSize + len(str(messageSize)) - 1
