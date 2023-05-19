@@ -61,3 +61,4 @@ Logfiles
 --------
 
 Log files will be automatically generated on both client and server side in the folder udp/logfiles. 
+For a production environment, you should store the log files on a system location which is dedicated for log files.
