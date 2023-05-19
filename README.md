@@ -8,15 +8,13 @@ Python 3 on any compatible OS
 
 ## Installation
 
-1. clone git repository 
+1. clone this repository 
 2. install python 3.X and add its path to system path variables
 3. cd udp/config and open config.py
-4. set mandatory configuration parameters
+4. set mandatory configuration parameters in config.py
 ```
-	
-	PROVIDER = name of provider
-	SERVER_ADDRESS = 'XXX.XXX.XXX.XXX' # Ethernet/LAN ipv4
-
+PROVIDER = name of provider
+SERVER_ADDRESS = 'XXX.XXX.XXX.XXX' # Ethernet/LAN ipv4
 ```
 5. add Ethernet/LAN ipv4 of allowed clients to allowed_clients = ['localhost', '127.0.0.1']
 
@@ -24,29 +22,24 @@ Python 3 on any compatible OS
 
 6. change optional parameters if desired
 ```
-		
-		------------------- general ---------------------------------------
-		
-		ECHO_PORT = integer (range 49152–65535)                   --> override option in cmd/shell      
-	        BUFSIZE = integer (max number of bytes to receive per package)
-	    
-	    ------------------- only relevant for client ----------------------
+# general
+ECHO_PORT = integer (range 49152–65535)   # can be overriden with command   
+BUFSIZE = integer (max number of bytes to receive per package)
 
-		MAX_PACKAGE_NUM = integer (number of packages to send)    --> override option in cmd/shell 
-		ECHO_TIMEOUT = float (timeout in seconds to wait for echo from server)
-		INTER_PRINT = integer (print every 'INTER_PRINT'-th package (set to None for no intermediate printing)
+# only relevant for client
+MAX_PACKAGE_NUM = integer (number of packages to send)  # can be overriden with command 
+ECHO_TIMEOUT = float (timeout in seconds to wait for echo from server)
+INTER_PRINT = integer (print every 'INTER_PRINT'-th package (set to None for no intermediate printing)
 
 ```
 7. add client ip to allowed clients
 ```
-		
-		# allowed clients
-		allowed_clients = [
-			'localhost',
-			'127.0.0.1',
-			...
-		]
-
+# allowed clients
+allowed_clients = [
+	'localhost',
+	'127.0.0.1',
+	...
+]
 ```
 
 ## Run Server
