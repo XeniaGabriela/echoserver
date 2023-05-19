@@ -1,6 +1,6 @@
 # UDP ECHO SERVER AND CLIENT
 
-This repository contains both UDP server and Client for testing UDP connections by counting lost packages.
+This repository contains a UDP server and a UDP client for testing UDP connections by counting lost packages.
 
 ## Requirements
 
